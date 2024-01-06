@@ -67,6 +67,12 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(book, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 180, 370, 540));
+
+        quiz.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                quizMouseClicked(evt);
+            }
+        });
         getContentPane().add(quiz, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, 360, 540));
         getContentPane().add(notes, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 370, 540));
 
@@ -101,6 +107,15 @@ public class Menu extends javax.swing.JFrame {
         dispose();
         sfx.playTrack("click.wav");
     }//GEN-LAST:event_bookMouseClicked
+
+    private void quizMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quizMouseClicked
+        Quiz q = new Quiz();
+        q.setLocationRelativeTo(null);
+        q.setResizable(false);
+        q.setVisible(true);
+        dispose();
+        sfx.playTrack("click.wav");
+    }//GEN-LAST:event_quizMouseClicked
 
     private void modeRender(){
         if(darkmode){

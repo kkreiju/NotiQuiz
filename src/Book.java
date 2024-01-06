@@ -4,7 +4,7 @@ import java.awt.*;
 public class Book extends javax.swing.JFrame {
     Data d = new Data();
     SoundEffects sfx = new SoundEffects();
-    int page;
+    int page = 1;
     String pageFormat;
     boolean darkmode;
     /**
@@ -64,7 +64,7 @@ public class Book extends javax.swing.JFrame {
 
         pageIndicator.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
         pageIndicator.setForeground(new java.awt.Color(0, 0, 0));
-        pageIndicator.setText("0 of 963");
+        pageIndicator.setText("1 of 963");
         getContentPane().add(pageIndicator, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 860, -1, -1));
 
         topIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/book.png"))); // NOI18N
@@ -77,6 +77,12 @@ public class Book extends javax.swing.JFrame {
             }
         });
         getContentPane().add(mode, new org.netbeans.lib.awtextra.AbsoluteConstraints(1460, 10, -1, 60));
+
+        jScrollPane1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jScrollPane1MouseWheelMoved(evt);
+            }
+        });
 
         pages.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pages.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ThermodynamicsAn_Engineering_Approach_5th_Edition-Cengel_page-0001.jpg"))); // NOI18N
@@ -106,7 +112,7 @@ public class Book extends javax.swing.JFrame {
 
     private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_formMouseWheelMoved
         int turn = evt.getWheelRotation();
-        if (turn < 0 && page > 0) {
+        if (turn < 0 && page > 1) {
             page--;
         } else if(turn > 0 && page < 963) {
             page++;
@@ -124,6 +130,17 @@ public class Book extends javax.swing.JFrame {
         }
         modeRender();
     }//GEN-LAST:event_formMouseClicked
+
+    private void jScrollPane1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jScrollPane1MouseWheelMoved
+        int turn = evt.getWheelRotation();
+        if (turn < 0 && page > 1) {
+            page--;
+        } else if(turn > 0 && page < 963) {
+            page++;
+        }
+        pageChange(pageFormat());
+        pageIndicator.setText(page + " of 963");
+    }//GEN-LAST:event_jScrollPane1MouseWheelMoved
 
     private String pageFormat() {
         if (page < 10) {

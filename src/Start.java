@@ -87,7 +87,6 @@ public class Start extends javax.swing.JFrame {
         catch(Exception e){
             e.printStackTrace();
         }
-        
     }//GEN-LAST:event_exitButtonMouseClicked
 
     private void startButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startButtonMouseClicked
