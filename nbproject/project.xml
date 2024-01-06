@@ -6,6 +6,7 @@
             <name>NotiQuiz</name>
             <explicit-platform explicit-source-supported="true"/>
             <source-roots>
+                <root id="src.book.dir"/>
                 <root id="src.resources.dir"/>
                 <root id="src.dir"/>
             </source-roots>

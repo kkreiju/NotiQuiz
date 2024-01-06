@@ -1,4 +1,3 @@
-
 import javax.swing.ImageIcon;
 
 public class Menu extends javax.swing.JFrame {
@@ -30,34 +29,29 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        exitButton = new javax.swing.JLabel();
-        playButton = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        backButton = new javax.swing.JLabel();
+        topIcon = new javax.swing.JLabel();
         mode = new javax.swing.JLabel();
+        book = new javax.swing.JLabel();
+        quiz = new javax.swing.JLabel();
+        notes = new javax.swing.JLabel();
+        options = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("NotiQuiz");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exitW.png"))); // NOI18N
-        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backW.png"))); // NOI18N
+        backButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitButtonMouseClicked(evt);
+                backButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 660, -1, -1));
+        getContentPane().add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 790, -1, -1));
 
-        playButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/playW.png"))); // NOI18N
-        playButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                playButtonMouseClicked(evt);
-            }
-        });
-        getContentPane().add(playButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 510, -1, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, -1, -1));
+        topIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu.png"))); // NOI18N
+        getContentPane().add(topIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         mode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lightmode.png"))); // NOI18N
         mode.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -66,6 +60,18 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(mode, new org.netbeans.lib.awtextra.AbsoluteConstraints(1460, 10, -1, 60));
+
+        book.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bookMouseClicked(evt);
+            }
+        });
+        getContentPane().add(book, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 180, 370, 540));
+        getContentPane().add(quiz, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, 360, 540));
+        getContentPane().add(notes, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 370, 540));
+
+        options.setIcon(new javax.swing.ImageIcon(getClass().getResource("/optionsW.png"))); // NOI18N
+        getContentPane().add(options, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/whitebackground.png"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -78,29 +84,31 @@ public class Menu extends javax.swing.JFrame {
         sfx.playTrack("click.wav");
     }//GEN-LAST:event_modeMouseClicked
 
-    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
+    private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseClicked
+        Start s = new Start();
+        s.setLocationRelativeTo(null);
+        s.setResizable(false);
+        s.setVisible(true);
+        dispose();
         sfx.playTrack("click.wav");
-        try{
-            Thread.sleep(1000);
-            System.exit(0);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        
-    }//GEN-LAST:event_exitButtonMouseClicked
+    }//GEN-LAST:event_backButtonMouseClicked
 
-    private void playButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playButtonMouseClicked
+    private void bookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookMouseClicked
+        Book b = new Book();
+        b.setLocationRelativeTo(null);
+        b.setResizable(false);
+        b.setVisible(true);
+        dispose();
         sfx.playTrack("click.wav");
-    }//GEN-LAST:event_playButtonMouseClicked
+    }//GEN-LAST:event_bookMouseClicked
 
     private void modeRender(){
         if(darkmode){
             darkmode = false;
             background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/whitebackground.png")));
             mode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lightmode.png")));
-            playButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/playW.png")));
-            exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exitW.png")));
+            backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backW.png")));
+            options.setIcon(new javax.swing.ImageIcon(getClass().getResource("/optionsW.png")));
             d.data.set(0 , "false");
             d.saveData();
         }
@@ -108,8 +116,8 @@ public class Menu extends javax.swing.JFrame {
             darkmode = true;
             background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/blackbackground.png")));
             mode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/darkmode.png")));
-            playButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/playB.png")));
-            exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exitB.png")));
+            backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backB.png")));
+            options.setIcon(new javax.swing.ImageIcon(getClass().getResource("/optionsB.png")));
             d.data.set(0 , "true");
             d.saveData();
         }
@@ -131,30 +139,35 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Start.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Start.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Start.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Start.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu().setVisible(true);
+                new Start().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backButton;
     private javax.swing.JLabel background;
-    private javax.swing.JLabel exitButton;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel book;
     private javax.swing.JLabel mode;
-    private javax.swing.JLabel playButton;
+    private javax.swing.JLabel notes;
+    private javax.swing.JLabel options;
+    private javax.swing.JLabel quiz;
+    private javax.swing.JLabel topIcon;
     // End of variables declaration//GEN-END:variables
 }

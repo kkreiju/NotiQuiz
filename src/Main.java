@@ -1,10 +1,10 @@
 public class Main {
 
     public static void main(String[] args) {
-        Menu g = new Menu();
+        Start s = new Start();
 
-        g.setLocationRelativeTo(null);
-        g.setResizable(false);
-        g.setVisible(true);
+        s.setLocationRelativeTo(null);
+        s.setResizable(false);
+        s.setVisible(true);
     }
 }
