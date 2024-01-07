@@ -14,10 +14,11 @@ public class Quiz extends javax.swing.JFrame implements ActionListener {
     boolean renderC;
     boolean renderD;
     boolean disableChoices = false;
+    boolean answering = true;
     ArrayList<Integer> randomIndex = new ArrayList<Integer>();
     Timer timer = new Timer(1000, this);
     int turn = 0;
-    int time = 6; //extend 1 to see 5s mark
+    int time = 15;
     /**
      * Creates new form GUI
      */
@@ -157,6 +158,8 @@ public class Quiz extends javax.swing.JFrame implements ActionListener {
         m.setVisible(true);
         dispose();
         sfx.playTrack("click.wav");
+        timer.stop();
+        time = 15;
     }//GEN-LAST:event_backButtonMouseClicked
 
     private void choiceAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_choiceAMouseClicked
@@ -186,7 +189,13 @@ public class Quiz extends javax.swing.JFrame implements ActionListener {
     private void answerVerifier(String choice){
         disableChoices = true;
         if(choice.equals(d.correctAnswer.get(randomIndex.get(turn)))){
-            sfx.playTrack("correct.wav");
+            if(answering){
+                sfx.playTrack("correct.wav");
+            }
+            else{
+                sfx.playTrack("incorrect.wav");
+            }
+            
             if(choice == "a"){
                 revealAnswers("green", "gray", "gray", "gray");
                 renderA = true;
@@ -242,7 +251,9 @@ public class Quiz extends javax.swing.JFrame implements ActionListener {
            }
         }
         grayRender(renderA, renderB, renderC, renderD);
+        answering = false;
         timerRender();
+        time = 5;
     }
     
     private void revealAnswers(String a, String b, String c, String d){
@@ -292,10 +303,7 @@ public class Quiz extends javax.swing.JFrame implements ActionListener {
     }
             
     private void shuffleQuestions(){
-        int maxQues = 0;
-        for(int i = 0; i < d.renderQuestions.size() ; i += 6){
-                maxQues++;
-        }
+        int maxQues = d.questions.size();
         boolean isRepeated = false;
         boolean randomNumRepeated = false;
         int maxNum = maxQues - 1;
@@ -329,6 +337,7 @@ public class Quiz extends javax.swing.JFrame implements ActionListener {
     }
     
     private void startQuestions(){
+        timerRender();
         question.setText("<html><div style='text-align: center;'>" + d.questions.get(randomIndex.get(turn)) + "</div></html>");
         choiceA.setText("<html><div style='text-align: center;'>" + d.a.get(randomIndex.get(turn)) + "</div></html>");
         choiceB.setText("<html><div style='text-align: center;'>" + d.b.get(randomIndex.get(turn)) + "</div></html>");
@@ -360,7 +369,7 @@ public class Quiz extends javax.swing.JFrame implements ActionListener {
     }
     
     private void timerRender(){
-        timer.start();
+        timer.restart();
     }
     
     private void turnChecker(){
@@ -438,23 +447,53 @@ public class Quiz extends javax.swing.JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        timerLabel.setVisible(true);
-        time--;
-        timerLabel.setText("" + time);
-        if(time == 0){
-            timer.stop();
-            timerLabel.setVisible(false);
-            disableChoices = false;
-            aOverlay.setIcon(null);
-            bOverlay.setIcon(null);
-            cOverlay.setIcon(null);
-            dOverlay.setIcon(null);
-            time = 6;
-            renderA = false;
-            renderB = false;
-            renderC = false;
-            renderD = false;
-            turnChecker();
+        if(answering){
+            timerLabel.setVisible(true);
+            timerLabel.setText("" + time);
+            if(time == 0){
+                timer.stop();
+                timerLabel.setVisible(false);
+                answering = false;
+                disableChoices = true;
+                String choice;
+                if(d.correctAnswer.get(randomIndex.get(turn)).equals("a")){
+                    choice = "a";
+                }
+                else if(d.correctAnswer.get(randomIndex.get(turn)).equals("b")){
+                    choice = "b";
+                }
+                else if(d.correctAnswer.get(randomIndex.get(turn)).equals("c")){
+                    choice = "c";
+                }
+                else{
+                    choice = "d";
+                }
+                answerVerifier(choice);
+                timerRender();
+                aq.correctCount--; //kay mo 100% accuracy if pasagdan
+                time = 6;
+            }
         }
+        else{
+            timerLabel.setVisible(true);
+            timerLabel.setText("" + time);
+            if(time == 0){
+                timer.stop();
+                time = 16;
+                answering = true;
+                timerLabel.setVisible(false);
+                disableChoices = false;
+                aOverlay.setIcon(null);
+                bOverlay.setIcon(null);
+                cOverlay.setIcon(null);
+                dOverlay.setIcon(null); 
+                renderA = false;
+                renderB = false;
+                renderC = false;
+                renderD = false;
+                turnChecker();
+            }
+        }
+        time--;
     }
 }

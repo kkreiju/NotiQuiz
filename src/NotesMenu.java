@@ -1,13 +1,13 @@
 import javax.swing.ImageIcon;
 
-public class Menu extends javax.swing.JFrame {
+public class NotesMenu extends javax.swing.JFrame {
     Data d = new Data();
     SoundEffects sfx = new SoundEffects();
     boolean darkmode;
     /**
      * Creates new form GUI
      */
-    public Menu() {
+    public NotesMenu() {
         d.renderData();
         initComponents();
         this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
@@ -32,10 +32,10 @@ public class Menu extends javax.swing.JFrame {
         backButton = new javax.swing.JLabel();
         topIcon = new javax.swing.JLabel();
         mode = new javax.swing.JLabel();
-        book = new javax.swing.JLabel();
-        quiz = new javax.swing.JLabel();
-        notes = new javax.swing.JLabel();
-        options = new javax.swing.JLabel();
+        delete = new javax.swing.JLabel();
+        view = new javax.swing.JLabel();
+        create = new javax.swing.JLabel();
+        choices = new javax.swing.JLabel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,7 +50,7 @@ public class Menu extends javax.swing.JFrame {
         });
         getContentPane().add(backButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 790, -1, -1));
 
-        topIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/menu.png"))); // NOI18N
+        topIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/notes.png"))); // NOI18N
         getContentPane().add(topIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         mode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lightmode.png"))); // NOI18N
@@ -61,29 +61,29 @@ public class Menu extends javax.swing.JFrame {
         });
         getContentPane().add(mode, new org.netbeans.lib.awtextra.AbsoluteConstraints(1460, 10, -1, 60));
 
-        book.addMouseListener(new java.awt.event.MouseAdapter() {
+        delete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bookMouseClicked(evt);
+                deleteMouseClicked(evt);
             }
         });
-        getContentPane().add(book, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 180, 370, 540));
+        getContentPane().add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 180, 370, 540));
 
-        quiz.addMouseListener(new java.awt.event.MouseAdapter() {
+        view.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                quizMouseClicked(evt);
+                viewMouseClicked(evt);
             }
         });
-        getContentPane().add(quiz, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, 360, 540));
+        getContentPane().add(view, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 370, 540));
 
-        notes.addMouseListener(new java.awt.event.MouseAdapter() {
+        create.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                notesMouseClicked(evt);
+                createMouseClicked(evt);
             }
         });
-        getContentPane().add(notes, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 370, 540));
+        getContentPane().add(create, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 370, 540));
 
-        options.setIcon(new javax.swing.ImageIcon(getClass().getResource("/optionsW.png"))); // NOI18N
-        getContentPane().add(options, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        choices.setIcon(new javax.swing.ImageIcon(getClass().getResource("/noteschoicesW.png"))); // NOI18N
+        getContentPane().add(choices, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/whitebackground.png"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -91,46 +91,46 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseClicked
+        Menu m = new Menu();
+        m.setLocationRelativeTo(null);
+        m.setResizable(false);
+        m.setVisible(true);
+        dispose();
+        sfx.playTrack("click.wav");
+    }//GEN-LAST:event_backButtonMouseClicked
+
     private void modeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modeMouseClicked
         modeRender();
         sfx.playTrack("click.wav");
     }//GEN-LAST:event_modeMouseClicked
 
-    private void backButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseClicked
-        Start s = new Start();
-        s.setLocationRelativeTo(null);
-        s.setResizable(false);
-        s.setVisible(true);
+    private void createMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createMouseClicked
+        CreateNotes cn = new CreateNotes();
+        cn.setLocationRelativeTo(null);
+        cn.setResizable(false);
+        cn.setVisible(true);
         dispose();
         sfx.playTrack("click.wav");
-    }//GEN-LAST:event_backButtonMouseClicked
+    }//GEN-LAST:event_createMouseClicked
 
-    private void bookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookMouseClicked
-        Book b = new Book();
-        b.setLocationRelativeTo(null);
-        b.setResizable(false);
-        b.setVisible(true);
+    private void viewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewMouseClicked
+        ViewNotes vn = new ViewNotes();
+        vn.setLocationRelativeTo(null);
+        vn.setResizable(false);
+        vn.setVisible(true);
         dispose();
         sfx.playTrack("click.wav");
-    }//GEN-LAST:event_bookMouseClicked
+    }//GEN-LAST:event_viewMouseClicked
 
-    private void quizMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quizMouseClicked
-        Quiz q = new Quiz();
-        q.setLocationRelativeTo(null);
-        q.setResizable(false);
-        q.setVisible(true);
+    private void deleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseClicked
+        DeleteNotes dn = new DeleteNotes();
+        dn.setLocationRelativeTo(null);
+        dn.setResizable(false);
+        dn.setVisible(true);
         dispose();
         sfx.playTrack("click.wav");
-    }//GEN-LAST:event_quizMouseClicked
-
-    private void notesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notesMouseClicked
-        NotesMenu n = new NotesMenu();
-        n.setLocationRelativeTo(null);
-        n.setResizable(false);
-        n.setVisible(true);
-        dispose();
-        sfx.playTrack("click.wav");
-    }//GEN-LAST:event_notesMouseClicked
+    }//GEN-LAST:event_deleteMouseClicked
 
     private void modeRender(){
         if(darkmode){
@@ -138,7 +138,7 @@ public class Menu extends javax.swing.JFrame {
             background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/whitebackground.png")));
             mode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lightmode.png")));
             backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backW.png")));
-            options.setIcon(new javax.swing.ImageIcon(getClass().getResource("/optionsW.png")));
+            choices.setIcon(new javax.swing.ImageIcon(getClass().getResource("/noteschoicesW.png")));
             d.data.set(0 , "false");
             d.saveData();
         }
@@ -147,7 +147,7 @@ public class Menu extends javax.swing.JFrame {
             background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/blackbackground.png")));
             mode.setIcon(new javax.swing.ImageIcon(getClass().getResource("/darkmode.png")));
             backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backB.png")));
-            options.setIcon(new javax.swing.ImageIcon(getClass().getResource("/optionsB.png")));
+            choices.setIcon(new javax.swing.ImageIcon(getClass().getResource("/noteschoicesB.png")));
             d.data.set(0 , "true");
             d.saveData();
         }
@@ -193,11 +193,11 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backButton;
     private javax.swing.JLabel background;
-    private javax.swing.JLabel book;
+    private javax.swing.JLabel choices;
+    private javax.swing.JLabel create;
+    private javax.swing.JLabel delete;
     private javax.swing.JLabel mode;
-    private javax.swing.JLabel notes;
-    private javax.swing.JLabel options;
-    private javax.swing.JLabel quiz;
     private javax.swing.JLabel topIcon;
+    private javax.swing.JLabel view;
     // End of variables declaration//GEN-END:variables
 }
