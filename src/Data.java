@@ -7,6 +7,7 @@ public class Data {
     String file = "data.txt";
     String given = "givenquestions.txt";
     String notes = "notesquestions.txt";
+    String notesAdd = "notesadd.txt";
     ArrayList<String> data = new ArrayList<String>();
     ArrayList<String> renderQuestions = new ArrayList<String>();
     ArrayList<String> notesQuestions = new ArrayList<String>();
@@ -16,6 +17,7 @@ public class Data {
     ArrayList<String> c = new ArrayList<String>();
     ArrayList<String> d = new ArrayList<String>();
     ArrayList<String> correctAnswer = new ArrayList<String>();
+    ArrayList<String> notesDB = new ArrayList<String>();
 
     public void renderData() {
         try {
@@ -34,6 +36,30 @@ public class Data {
             FileOutputStream fos = new FileOutputStream("resources\\" + file);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(data);
+            oos.close();
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void renderNotesDB() {
+        try {
+            FileInputStream fis = new FileInputStream("resources\\" + notesAdd);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            notesDB = (ArrayList<String>) ois.readObject();
+            ois.close();
+            fis.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void saveNotesDB() {
+        try {
+            FileOutputStream fos = new FileOutputStream("resources\\" + notesAdd);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(notesDB);
             oos.close();
             fos.close();
         } catch (Exception e) {
