@@ -196,12 +196,14 @@ public class DeleteQuestions extends javax.swing.JFrame {
             switch (select) {
                 case 0:
                     JOptionPane.showMessageDialog(this, "Note " + (turn - 9) + " deleted.", "Delete Note", JOptionPane.INFORMATION_MESSAGE);
-                    for (int i = turn - 10; i <= 5; i++) {
+                    for (int i = 0; i <= 5 ; i++) {
                         d.notesQuestions.remove(turn - 10);
                     }
                     d.saveNotes();
-                    turn = 0;
-                    startQuestions();
+                    if(!d.notesQuestions.isEmpty()){
+                        turn = 10;
+                        startQuestions();
+                    }
                     break;
                 case 1:
                     //nothing
